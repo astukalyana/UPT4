@@ -21,6 +21,8 @@ for i in ws['A']:
     formatted = j[:1] + "." + j[1:2] + "." + j[2:9] + "." + j[9:11] + "." + j[11:13]
     daftar_wp.append(formatted)
 
+print(daftar_wp)
+
 #MEMBUAT EXCEL BARU
 wb = Workbook()
 ws = wb.active
@@ -41,7 +43,7 @@ password.send_keys("TOMI")
 password.send_keys(Keys.RETURN)
 
 #LOOP THROUGH DAFTAR_WP LIST
-for i in daftar_wp:
+for i in daftar_wp[:1]:
     driver.get("https://pajak.tangerangkab.go.id/pad_tangerangkab/objek_pajak/")
 
     #TEMPORARY LIST TO APPEND TO EXCEL
@@ -52,7 +54,8 @@ for i in daftar_wp:
     search_bar.send_keys(i)
     search_bar.send_keys(Keys.RETURN)
 
-    WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, "//*[@id='table1']/tbody/tr/td[5]")))
+    input("TUNGGU")
+    # WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, "//*[@id='table1']/tbody/tr/td[5]")))
 
     driver.find_element(By.XPATH, "//*[@id='table1']/tbody/tr/td[5]").click()
     driver.find_element(By.XPATH, "//*[@id='btn_edit']").click()
